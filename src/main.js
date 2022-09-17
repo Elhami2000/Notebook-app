@@ -1,7 +1,7 @@
 function Main({ notes, activeNote, onUpdateNote }) {
     const onEditField = (key, value) => {
         onUpdateNote({
-            id: activeNote.id,
+            ...activeNote,
             [key]: value,
             lastModified: Date.now()
         });
