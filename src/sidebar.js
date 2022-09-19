@@ -1,22 +1,34 @@
+import { useState } from "react";
+
 function Sidebar({ notes, onAddNote, onDeleteNote, activeNote, setActiveNote }) {
+    const [input, setInput] = useState('');
     const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
+    const filteredNotes = sortedNotes.filter(el => {
+        if(input === ''){
+            return el
+        } else{
+            return el.title.toLowerCase().includes(input);
+        }
+    });
+
     return <div className="app-sidebar">
+        <input className="app-search" onChange={(event) => setInput(event.target.value.toLowerCase())}/>
         <div className="app-sidebar-header">
-            <h1>Notes</h1>
+            <h1>All Notes</h1>
             <button onClick={onAddNote}>Add</button>
         </div>
         <div className="app-sidebar-notes">
-            {sortedNotes.map((note) => (
+            {filteredNotes.map((note) => (
                 <div className={`app-sidebar-note ${note.id === activeNote && "active"}`} onClick={() => setActiveNote(note.id)}>
                     <div className="sidebar-note-title">
                         <strong>{note.title}</strong>
                         <button onClick={() => onDeleteNote(note.id)}>Delete</button>
                     </div>
 
-                    <p>{note.body && note.body.substr(0,100) + "..."}</p>
+                    <p>{note.body && note.body.substr(0, 100) + "..."}</p>
 
                     <small className="note-meta">
-                        Date {new Date(note.lastModified).toLocaleDateString("en-GB", {hour: "2-digit", minute: "2-digit"})}
+                        Date {new Date(note.lastModified).toLocaleDateString("en-GB", { hour: "2-digit", minute: "2-digit" })}
                     </small>
                 </div>
             ))}

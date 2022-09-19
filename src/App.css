@@ -37,6 +37,23 @@ button:hover {
 
 /* CSS code for sidebar */
 
+.app {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+}
+
+.app-search{
+  margin-left: 4%;
+  margin-top: 5%;
+  width: 70%;
+  height: 5vh;
+  padding: 3%;
+  border: 2px solid black;
+}
+
 .app-sidebar {
     width: 50%;
     height: 100vh;
@@ -56,10 +73,12 @@ button:hover {
     height: calc(100vh - 78px);
     overflow-y: scroll;
   }
+  
   .app-sidebar-note {
     padding: 25px;
     cursor: pointer;
   }
+
   .sidebar-note-title {
     display: flex;
     justify-content: space-between;
