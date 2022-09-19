@@ -12,7 +12,7 @@ function App() {
     const newNote = {
       id: uuid(),
       title: "New note.",
-      body: "",
+      body: "New note created!",
       lastModified: Date.now()
     };
 
